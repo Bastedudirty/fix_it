@@ -53,9 +53,8 @@ public class TodoFragment extends Fragment {
         List<String> categories = new ArrayList<>();
         categories.add("All");
         categories.add("Personal");
-        categories.add("Study");
-        categories.add("Shopping");
-        categories.add("Others");
+        categories.add("School");
+        categories.add("Other");
 
         ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_item, categories);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
