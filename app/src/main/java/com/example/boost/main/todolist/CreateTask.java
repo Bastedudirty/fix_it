@@ -41,6 +41,7 @@ public class CreateTask extends DialogFragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.dialog_task_creation, container, false);
 
+        // Initialize views
         titleEditText = view.findViewById(R.id.titleEditText);
         descriptionEditText = view.findViewById(R.id.descriptionEditText);
         dateEditText = view.findViewById(R.id.dateEditText);
@@ -49,9 +50,11 @@ public class CreateTask extends DialogFragment {
         cancelButton = view.findViewById(R.id.cancelButton);
         spinnerCategory = view.findViewById(R.id.spinnerCategory);
 
+        // Date and Time pickers
         dateEditText.setOnClickListener(v -> showDatePicker());
         timeEditText.setOnClickListener(v -> showTimePicker());
 
+        // Save and Cancel button functionality
         saveButton.setOnClickListener(v -> saveTask());
         cancelButton.setOnClickListener(v -> dismiss());
 
@@ -59,31 +62,31 @@ public class CreateTask extends DialogFragment {
     }
 
     private void showDatePicker() {
-        Calendar currentDate = Calendar.getInstance();
         DatePickerDialog datePickerDialog = new DatePickerDialog(
-                getContext(),
+                requireContext(),
                 (view, year, month, dayOfMonth) -> {
                     selectedDateTime.set(year, month, dayOfMonth);
-                    dateEditText.setText(dayOfMonth + "/" + (month + 1) + "/" + year);
+                    String formattedDate = String.format("%02d/%02d/%04d", dayOfMonth, month + 1, year);
+                    dateEditText.setText(formattedDate);
                 },
-                currentDate.get(Calendar.YEAR),
-                currentDate.get(Calendar.MONTH),
-                currentDate.get(Calendar.DAY_OF_MONTH)
+                selectedDateTime.get(Calendar.YEAR),
+                selectedDateTime.get(Calendar.MONTH),
+                selectedDateTime.get(Calendar.DAY_OF_MONTH)
         );
         datePickerDialog.show();
     }
 
     private void showTimePicker() {
-        Calendar currentTime = Calendar.getInstance();
         TimePickerDialog timePickerDialog = new TimePickerDialog(
-                getContext(),
-                (timePicker, hourOfDay, minute) -> {
+                requireContext(),
+                (view, hourOfDay, minute) -> {
                     selectedDateTime.set(Calendar.HOUR_OF_DAY, hourOfDay);
                     selectedDateTime.set(Calendar.MINUTE, minute);
-                    timeEditText.setText(String.format("%02d:%02d", hourOfDay, minute));
+                    String formattedTime = String.format("%02d:%02d", hourOfDay, minute);
+                    timeEditText.setText(formattedTime);
                 },
-                currentTime.get(Calendar.HOUR_OF_DAY),
-                currentTime.get(Calendar.MINUTE),
+                selectedDateTime.get(Calendar.HOUR_OF_DAY),
+                selectedDateTime.get(Calendar.MINUTE),
                 true
         );
         timePickerDialog.show();
@@ -101,14 +104,7 @@ public class CreateTask extends DialogFragment {
             return;
         }
 
-        Task newTask;
-
-        if (dueDate.isEmpty() || dueTime.isEmpty() || category.isEmpty()) {
-            newTask = new Task(title, description);
-        } else {
-            newTask = new Task(title, description, dueDate, dueTime, category);
-        }
-
+        Task newTask = new Task(title, description, dueDate, dueTime, category);
         if (taskCreatedListener != null) {
             taskCreatedListener.onTaskCreated(newTask);
         }

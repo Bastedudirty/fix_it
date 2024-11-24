@@ -12,10 +12,12 @@ import android.widget.Spinner;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.boost.R;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,8 +27,8 @@ public class TodoFragment extends Fragment {
     private RecyclerView recyclerView;
     private TaskAdapter taskAdapter;
     private Spinner categorySpinner;
-    private Button createTaskButton;
     private List<Task> allTasks = new ArrayList<>();
+    private FloatingActionButton addTaskButton; // Reference to the "Add" button
 
     @Nullable
     @Override
@@ -35,24 +37,19 @@ public class TodoFragment extends Fragment {
 
         recyclerView = view.findViewById(R.id.list_item);
         categorySpinner = view.findViewById(R.id.categorySpinner);
-        createTaskButton = view.findViewById(R.id.fabAddTask);
+        addTaskButton = view.findViewById(R.id.fabAddTask); // Locate the button
 
         taskAdapter = new TaskAdapter();
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(taskAdapter);
 
         setupCategorySpinner();
-        createTaskButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                new CreateTask();
-            }
-        });
+        setupAddTaskButton(); // Set up the button
+
         return view;
     }
 
     private void setupCategorySpinner() {
-
         List<String> categories = new ArrayList<>();
         categories.add("All");
         categories.add("Personal");
@@ -78,6 +75,19 @@ public class TodoFragment extends Fragment {
         });
     }
 
+    private void setupAddTaskButton() {
+        addTaskButton.setOnClickListener(v -> {
+            FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
+            CreateTask createTaskDialog = new CreateTask();
+
+            createTaskDialog.setTaskCreatedListener(newTask -> {
+                allTasks.add(newTask); // Add the new task to the list
+                taskAdapter.setTasks(new ArrayList<>(allTasks)); // Refresh the adapter
+            });
+
+            createTaskDialog.show(fragmentManager, "CreateTask");
+        });
+    }
 
     private void filterTasks(String category) {
         if (category.equals("All")) {

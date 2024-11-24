@@ -46,7 +46,10 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
     public void onBindViewHolder(@NonNull TaskViewHolder holder, int position) {
         Task task = filteredTasks.get(position);
         holder.titleTextView.setText(task.getTitle());
+        holder.descriptionTextView.setText(task.getDescription());
         holder.categoryTextView.setText(task.getCategory());
+        holder.dueDateTextView.setText(task.getDueDate());
+        holder.dueTimeTextView.setText(task.getDueTime());
     }
 
     @Override
@@ -55,12 +58,15 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
     }
 
     static class TaskViewHolder extends RecyclerView.ViewHolder {
-        TextView titleTextView, categoryTextView;
+        TextView titleTextView, categoryTextView, dueDateTextView, dueTimeTextView, descriptionTextView;
 
         public TaskViewHolder(@NonNull View itemView) {
             super(itemView);
             titleTextView = itemView.findViewById(R.id.taskTitle);
+            descriptionTextView = itemView.findViewById(R.id.taskDescription);
             categoryTextView = itemView.findViewById(R.id.taskCategory);
+            dueDateTextView = itemView.findViewById(R.id.taskDueDate);
+            dueTimeTextView = itemView.findViewById(R.id.duetime);
         }
     }
 }

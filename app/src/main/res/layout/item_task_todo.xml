@@ -5,18 +5,19 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     app:cardCornerRadius="8dp"
-    android:elevation="4dp"
-    android:paddingTop="10dp">
+    android:layout_marginBottom="10dp"
+    android:background="@color/Transparent">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal">
 
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/white"
+            android:background="@color/gd"
             android:orientation="vertical">
 
             <TextView
@@ -24,16 +25,17 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Task Title"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 android:textSize="18sp"
-                android:layout_marginLeft="20dp" />
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"/>
 
             <TextView
                 android:id="@+id/taskDescription"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Description here..."
-                android:textColor="@color/green"
+                android:textColor="@color/white"
                 android:textSize="14sp"
                 android:layout_marginLeft="20dp" />
 
@@ -42,7 +44,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Due Date"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 android:textSize="14sp"
                 android:layout_marginLeft="20dp" />
 
@@ -51,7 +53,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Time"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 android:textSize="14sp"
                 android:layout_marginLeft="20dp" />
 
@@ -60,9 +62,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Category"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 android:textSize="14sp"
-                android:layout_marginLeft="20dp" />
+                android:layout_marginLeft="20dp"
+                android:layout_marginBottom="10dp"/>
 
         </LinearLayout>
 
