@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/Track"
+        android:title="Track"
+        android:icon="@drawable/vector"/>
+
+    <item
+        android:id="@+id/Note"
+        android:title="Note"
+        android:icon="@drawable/note"/>
+
+    <item
+        android:id="@+id/todo"
+        android:title="Todo"
+        android:icon="@drawable/baseline_task_24"
+       />
+
+    <item
+        android:id="@+id/Timer"
+        android:title="Timer"
+        android:icon="@drawable/baseline_access_time_24"/>
+
+    <item
+        android:id="@+id/Calendar"
+        android:title="Calendar"
+        android:icon="@drawable/baseline_calendar_today_24"/>
+
+</menu>

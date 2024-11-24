@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "101621026611",
+    "project_id": "boost-50bba",
+    "storage_bucket": "boost-50bba.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:101621026611:android:4b077e3b55b7d8b36e7846",
+        "android_client_info": {
+          "package_name": "com.example.boost"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC7T2gL8nDw_rIKBIXr7WaXzs5a1JvK9cI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
